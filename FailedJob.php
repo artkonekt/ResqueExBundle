@@ -1,6 +1,6 @@
 <?php
 
-namespace BCC\ResqueBundle;
+namespace Konekt\ResqueExBundle;
 
 class FailedJob
 {

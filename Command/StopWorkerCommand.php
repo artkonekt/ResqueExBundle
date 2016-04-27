@@ -1,6 +1,6 @@
 <?php
 
-namespace BCC\ResqueBundle\Command;
+namespace Konekt\ResqueExBundle\Command;
 
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputArgument;
@@ -13,8 +13,8 @@ class StopWorkerCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('bcc:resque:worker-stop')
-            ->setDescription('Stop a bcc resque worker')
+            ->setName('konekt:resque:worker-stop')
+            ->setDescription('Stop a resque worker')
             ->addArgument('id', InputArgument::OPTIONAL, 'Worker id')
             ->addOption('all', 'a', InputOption::VALUE_NONE, 'Should kill all workers')
         ;
@@ -22,7 +22,7 @@ class StopWorkerCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $resque = $this->getContainer()->get('bcc_resque.resque');
+        $resque = $this->getContainer()->get('konekt_resqueex.resque');
 
         if ($input->getOption('all')) {
             $workers = $resque->getWorkers();

@@ -1,6 +1,6 @@
 <?php
 
-namespace BCC\ResqueBundle\Controller;
+namespace Konekt\ResqueExBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -11,7 +11,7 @@ class DefaultController extends Controller
         $this->getResque()->pruneDeadWorkers();
         
         return $this->render(
-            'BCCResqueBundle:Default:index.html.twig',
+            'KonektResqueExBundle:Default:index.html.twig',
             array(
                 'resque' => $this->getResque(),
             )
@@ -30,7 +30,7 @@ class DefaultController extends Controller
         }
 
         return $this->render(
-            'BCCResqueBundle:Default:queue_show.html.twig',
+            'KonektResqueExBundle:Default:queue_show.html.twig',
             array(
                 'queue' => $queue,
                 'jobs' => $jobs,
@@ -50,7 +50,7 @@ class DefaultController extends Controller
         }
 
         return $this->render(
-            'BCCResqueBundle:Default:failed_list.html.twig',
+            'KonektResqueExBundle:Default:failed_list.html.twig',
             array(
                 'jobs' => $jobs,
                 'showingAll' => $showingAll,
@@ -61,7 +61,7 @@ class DefaultController extends Controller
     public function listScheduledAction()
     {
         return $this->render(
-            'BCCResqueBundle:Default:scheduled_list.html.twig',
+            'KonektResqueExBundle:Default:scheduled_list.html.twig',
             array(
                 'timestamps' => $this->getResque()->getDelayedJobTimestamps()
             )
@@ -78,7 +78,7 @@ class DefaultController extends Controller
         }
 
         return $this->render(
-            'BCCResqueBundle:Default:scheduled_timestamp.html.twig',
+            'KonektResqueExBundle:Default:scheduled_timestamp.html.twig',
             array(
                 'timestamp' => $timestamp,
                 'jobs' => $jobs
@@ -87,11 +87,11 @@ class DefaultController extends Controller
     }
 
     /**
-     * @return \BCC\ResqueBundle\Resque
+     * @return \Konekt\ResqueExBundle\Resque
      */
     protected function getResque()
     {
-        return $this->get('bcc_resque.resque');
+        return $this->get('konekt_resqueex.resque');
     }
 
     /**

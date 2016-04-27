@@ -1,6 +1,6 @@
 <?php
 
-namespace BCC\ResqueBundle\DependencyInjection;
+namespace Konekt\ResqueExBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('bcc_resque');
+        $rootNode = $treeBuilder->root('konekt_resqueex');
 
         $rootNode
             ->addDefaultsIfNotSet()
@@ -32,7 +32,7 @@ class Configuration implements ConfigurationInterface
                     ->defaultNull()
                     ->end()
                 ->scalarNode('class')
-                    ->defaultValue('BCC\ResqueBundle\Resque')
+                    ->defaultValue('Konekt\ResqueExBundle\Resque')
                     ->cannotBeEmpty()
                     ->info('Set the resque class dir')
                 ->end()
