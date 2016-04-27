@@ -1,6 +1,8 @@
-# Intro to BCCResqueBundle
+# Intro to ResqueExBundle
 
-The BCC resque bundle provides integration of [php-resque](https://github.com/chrisboulton/php-resque/) to Symfony2. It is inspired from resque, a Redis-backed Ruby library for creating background jobs, placing them on multiple queues, and processing them later.
+> This is a fork of [BCCResqueBundle](https://github.com/michelsalib/BCCResqueBundle) in order to replace [php-resque](https://github.com/chrisboulton/php-resque/) with [php-resque-ex](https://github.com/wa0x6e/php-resque-ex)
+
+The resque-ex bundle provides integration of [php-resque-ex](https://github.com/wa0x6e/php-resque-ex) to Symfony2. It is inspired from resque, a Redis-backed Ruby library for creating background jobs, placing them on multiple queues, and processing them later.
 
 ## Features:
 
@@ -30,21 +32,24 @@ Make sure you have redis installed on your machine: http://redis.io/
 
 ### Get the bundle
 
-Add to your `bcc-resque-bundle` to your dependencies:
+Either `composer require konekt/resque-ex-bundle`
+
+or
+
+add to your `resque-ex-bundle` to your dependencies:
 
 ``` json
 {
     "require": {
         ...
-        "bcc/resque-bundle": "dev-master"
+        "konekt/resque-ex-bundle": "dev-master"
     }
     ...
 }
 ```
+and to install, run `php composer.phar [update|install]`.
 
-To install, run `php composer.phar [update|install]`.
-
-### Add BCCResqueBundle to your application kernel
+### Add ResqueExBundle to your application kernel
 
 ``` php
 <?php
@@ -54,7 +59,7 @@ To install, run `php composer.phar [update|install]`.
     {
         return array(
             // ...
-            new BCC\ResqueBundle\BCCResqueBundle(),
+            new Konekt\ResqueExBundle\ResqueExBundle(),
             // ...
         );
     }
