@@ -1,15 +1,18 @@
 {
-    "name": "bcc/resque-bundle",
+    "name": "konekt/resque-ex-bundle",
     "type": "symfony-bundle",
-    "description": "BCCResqueBundle",
+    "description": "Konekt ResqueExBundle",
     "keywords": ["resque job queue management"],
-    "homepage": "http://github.com/michelsalib/BCCResqueBundle",
+    "homepage": "http://github.com/artkonekt/resque-ex-bundle",
     "license": "MIT",
     "authors": [
         {
             "name": "Michel Salib",
             "email": "michelsalib@hotmail.com",
             "homepage": "http://michelsalib.com"
+        },
+        {
+            "name": "Attila Fulop"
         }
     ],
     "require": {
@@ -18,7 +21,6 @@
         "kamisama/php-resque-ex-scheduler": "~1.2"
     },
     "autoload": {
-        "psr-0": { "BCC\\ResqueBundle": "" }
-    },
-    "target-dir": "BCC/ResqueBundle"
+        "psr-0": { "Konekt\\ResqueExBundle": "" }
+    }
 }
