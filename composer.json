@@ -1,7 +1,7 @@
 {
     "name": "konekt/resque-ex-bundle",
     "type": "symfony-bundle",
-    "description": "Konekt ResqueExBundle",
+    "description": "Symfony bundle for ResqueEx",
     "keywords": ["resque job queue management"],
     "homepage": "http://github.com/artkonekt/resque-ex-bundle",
     "license": "MIT",
@@ -12,7 +12,8 @@
             "homepage": "http://michelsalib.com"
         },
         {
-            "name": "Attila Fulop"
+            "name": "Attila Fulop",
+            "homepage": "https://github.com/fulopattila122"
         }
     ],
     "require": {
@@ -21,6 +22,8 @@
         "kamisama/php-resque-ex-scheduler": "~1.2"
     },
     "autoload": {
-        "psr-0": { "Konekt\\ResqueExBundle": "" }
+        "psr-4": {
+            "Konekt\\ResqueExBundle\\": ""
+        }
     }
 }
