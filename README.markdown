@@ -22,7 +22,7 @@ TODOs:
 
 ## Screenshots
 ### Dashboard
-![](https://github.com/michelsalib/BCCResqueBundle/raw/master/Resources/screens/home.png)
+![](https://github.com/artkonekt/resque-ex-bundle/raw/master/Resources/screens/home.png)
 
 ## Installation and configuration:
 
@@ -71,8 +71,8 @@ Add to your `routing.yml`:
 
 ``` yml
 # app/config/routing.yml
-BCCResqueBundle:
-    resource: "@BCCResqueBundle/Resources/config/routing.xml"
+KonektResqueExBundle:
+    resource: "@KonektResqueExBundle/Resources/config/routing.xml"
     prefix:   /resque
 ```
 
@@ -106,8 +106,8 @@ You may want to add some configuration to your `config.yml`
 
 ``` yml
 # app/config/config.yml
-bcc_resque:
-    class: Konekt\ResqueExBundle\Resque           # the resque class if different from default
+konekt_resqueex:
+    class: Konekt\ResqueExBundle\Resque      # the resque class if different from default
     vendor_dir: %kernel.root_dir%/../vendor  # the vendor dir if different from default
     prefix: my-resque-prefix                 # optional prefix to separate Resque data per site/app
     redis:
@@ -130,7 +130,7 @@ This bundle is prepared for lazy loading in order to make a connection to redis 
 
 ## Creating a Job
 
-A job is a subclass of the `Konekt\ResqueExBundle\Job` class. You also can use the `BCC\Resque\ContainerAwareJob` if you need to leverage the container during job execution.
+A job is a subclass of the `Konekt\ResqueExBundle\Job` class. You also can use the `Konekt\ResqueExBundle\ContainerAwareJob` if you need to leverage the container during job execution.
 You will be forced to implement the run method that will contain your job logic:
 
 ``` php
@@ -159,7 +159,7 @@ You can get the resque service simply by using the container. From your controll
 <?php
 
 // get resque
-$resque = $this->get('bcc_resque.resque');
+$resque = $this->get('konekt_resqueex.resque');
 
 // create your job
 $job = new MyJob();
@@ -175,9 +175,9 @@ $resque->enqueue($job);
 ## Running a worker on a queue
 
 Executing the following commands will create a work on :
-- the `default` queue : `app/console bcc:resque:worker-start default`
-- the `q1` and `q2` queue : `app/console bcc:resque:worker-start q1,q2` (separate name with `,`)
-- all existing queues : `app/console bcc:resque:worker-start "*"`
+- the `default` queue : `app/console konekt:resque:worker-start default`
+- the `q1` and `q2` queue : `app/console konekt:resque:worker-start q1,q2` (separate name with `,`)
+- all existing queues : `app/console konekt:resque:worker-start "*"`
 
 You can also run a worker foreground by adding the `--foreground` option;
 
@@ -197,7 +197,7 @@ From your controller you can do:
 <?php
 
 // get resque
-$resque = $this->get('bcc_resque.resque');
+$resque = $this->get('konekt_resqueex.resque');
 
 // create your job
 $job = new MyJob();
@@ -219,11 +219,11 @@ $resque->enqueueIn($seconds, $job);
 You must also run a `scheduledworker`, which is responsible for taking items out of the special delayed queue and putting
 them into the originally specified queue.
 
-`app/console bcc:resque:scheduledworker-start`
+`app/console konekt:resque:scheduledworker-start`
 
-Stop it later with `app/console bcc:resque:scheduledworker-stop`.
+Stop it later with `app/console konekt:resque:scheduledworker-stop`.
 
-Note that when run in background mode it creates a PID file in 'cache/<environment>/bcc_resque_scheduledworker.pid'. If you
+Note that when run in background mode it creates a PID file in 'cache/<environment>/konekt_resqueex_scheduledworker.pid'. If you
 clear your cache while the scheduledworker is running you won't be able to stop it with the `scheduledworker-stop` command.
 
 Alternatively, you can run the scheduledworker in the foreground with the `--foreground` option.
