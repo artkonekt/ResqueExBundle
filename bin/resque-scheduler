@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__."/../../../../../autoload.php";
+require_once __DIR__."/../../../autoload.php";
 
 // Look for an environment variable with
 $RESQUE_PHP = getenv('RESQUE_PHP');
@@ -24,11 +24,11 @@ $logLevel = 0;
 $LOGGING = getenv('LOGGING');
 $VERBOSE = getenv('VERBOSE');
 $VVERBOSE = getenv('VVERBOSE');
-if (!empty($LOGGING) || !empty($VERBOSE)) {
-  $logLevel = ResqueScheduler_Worker::LOG_NORMAL;
-} else if (!empty($VVERBOSE)) {
-  $logLevel = ResqueScheduler_Worker::LOG_VERBOSE;
-}
+//if (!empty($LOGGING) || !empty($VERBOSE)) {
+//  $logLevel = ResqueScheduler_Worker::LOG_NORMAL;
+//} else if (!empty($VVERBOSE)) {
+//  $logLevel = ResqueScheduler_Worker::LOG_VERBOSE;
+//}
 
 // Check for jobs every $interval seconds
 $interval = 5;
@@ -53,8 +53,8 @@ if(!empty($PREFIX)) {
     Resque_Redis::prefix($PREFIX);
 }
 
-$worker = new ResqueScheduler_Worker();
-$worker->logLevel = $logLevel;
+$worker = new ResqueScheduler\Worker(ResqueScheduler\ResqueScheduler::QUEUE_NAME);
+//$worker->logLevel = $logLevel;
 
 $PIDFILE = getenv('PIDFILE');
 if ($PIDFILE) {

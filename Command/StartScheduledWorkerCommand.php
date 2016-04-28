@@ -69,7 +69,7 @@ class StartScheduledWorkerCommand extends ContainerAwareCommand
             $logFile = $this->getContainer()->getParameter(
                 'kernel.logs_dir'
             ) . '/resque-scheduler_' . $this->getContainer()->getParameter('kernel.environment') . '.log';
-            $workerCommand = 'nohup ' . $workerCommand . ' > ' . $logFile .' 2>&1 & echo $!';
+            $workerCommand = 'nohup ' . $workerCommand . ' >> ' . $logFile .' 2>&1 & echo $!';
         }
 
 		// In windows: When you pass an environment to CMD it replaces the old environment

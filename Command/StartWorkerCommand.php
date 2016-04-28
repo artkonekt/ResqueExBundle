@@ -93,7 +93,7 @@ class StartWorkerCommand extends ContainerAwareCommand
         ));
 
         if (!$input->getOption('foreground')) {
-            $workerCommand = strtr('nohup %cmd% > %logs_dir%/resque.log 2>&1 & echo $!', array(
+            $workerCommand = strtr('nohup %cmd% >> %logs_dir%/resque.log 2>&1 & echo $!', array(
                 '%cmd%'      => $workerCommand,
                 '%logs_dir%' => $this->getContainer()->getParameter('kernel.logs_dir'),
             ));
