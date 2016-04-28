@@ -5,6 +5,7 @@ namespace Konekt\ResqueExBundle;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 abstract class ContainerAwareJob extends Job
 {
@@ -56,4 +57,23 @@ abstract class ContainerAwareJob extends Job
             $this->kernel->shutdown();
         }
     }
+
+    /**
+     * Logs a message to the standard output.
+     *
+     * @param   string   $message
+     *
+     * @param   bool     $useTimestamp
+     */
+    public function log($message, $useTimestamp = true)
+    {
+        $output = '';
+        if ($useTimestamp) {
+            $output = '[' . (new \DateTime())->format('Y:m:d H:i:s') . ']: ';
+        }
+        $output .= $message;
+
+        print '[job] ' . $output . "\n";
+    }
+
 }

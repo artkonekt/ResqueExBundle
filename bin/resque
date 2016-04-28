@@ -6,7 +6,7 @@ if (empty($QUEUE)) {
     die("Set QUEUE env var containing the list of queues to work.\n");
 }
 
-require_once __DIR__."/../../../../../autoload.php";
+require_once __DIR__."/../../../autoload.php";
 
 $REDIS_BACKEND    = getenv('REDIS_BACKEND');
 $REDIS_BACKEND_DB = getenv('REDIS_BACKEND_DB');
@@ -39,9 +39,9 @@ if ($APP_INCLUDE) {
 
 // See if the APP_INCLUDE containes a logger object,
 // If none exists, fallback to internal logger
-if (!isset($logger) || !is_object($logger)) {
-    $logger = new Resque_Log($logLevel);
-}
+//if (!isset($logger) || !is_object($logger)) {
+//    $logger = new Resque_Log($logLevel);
+//}
 
 $BLOCKING = getenv('BLOCKING') !== FALSE;
 
@@ -118,7 +118,10 @@ if ($count > 1) {
     // Start a single worker
     $queues = explode(',', $QUEUE);
     $worker = new Resque_Worker($queues);
-    $worker->setLogger($logger);
+
+    // Chrisboulton's setLogger() no more exists in Kamisama's library so we cannot set it. Instead, letting the stdout to receive logs.
+    // TODO: initialize Kamisama's loggers from configuration
+    //$worker->setLogger($logger);
 
     $PIDFILE = getenv('PIDFILE');
     if ($PIDFILE) {
